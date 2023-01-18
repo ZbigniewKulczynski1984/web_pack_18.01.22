@@ -16,25 +16,26 @@ module.exports = {
                 exclude: /node_modules/
               },
               {
-                  test: /\.scss$/,
-                  use: [
-                      {
-                          loader: "style-loader"
-                      },
-                      {
-                          loader: "css-loader",
-                          options: {
-                              sourceMap: true
-                          }
-                      },
-                      {
-                          loader: "sass-loader",
-                          options: {
-                              sourceMap: true
-                          }
-                  }]
-              }
-          ]
+                test: /\.scss$/,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            plugins: [require('autoprefixer')()]
+                        }
+                    }
+                ]
+            }
+        ]
+    },
       },
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
